@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #999;
+}
+
+p {
+  margin: 0.5em 0 0.5em 0;
+}
+
+header {
+  display: block;
+  position: fixed; /*serve para que o menu fique fixado no teto mesmo quando rolo a barra para baixo*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #a493c0;
+  padding: 10px;
+}
+
+nav a:visited, /*faz com que o menu N~ao apareca como visitado quando clico*/
+nav a:link {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav > ul {
+  /*estou dizendo que o elemento ul dentro de nav deve ter essas comfiguracoes*/
+  display: inline;
+  padding: 0;
+}
+nav > ul > li {
+  display: inline-block; /*make the menu still in line in the header - still have control of margin, padding and etc*/
+  list-style: none; /* not interpret this item as a list item*/
+  margin: 0 5px 0 5px;
+}
+main {
+  display: block;
+  background-image: url("images/background.png"); /*this way the background will follow the image when expanding or shirinking it*/
+  padding-top: 3em;
+  padding-bottom: 3em;
+  min-height: 85%; /* to make sure that the bottom navigation shows up at the bottom of the page*/
+}
+footer {
+  padding: 15px;
+}
+
+aside,
+article {
+  padding: 2em; /*we use em here in order to provide proportion and turn it flexible in comparisson to the font size, on contrary of px which is static */
+}
+aside {
+  text-align: center; /*besides it says TEXT this unit is used to center image, givind the developer more flexibility specially when it comes to mobile*/
+}
+article {
+  width: 75%; /* this rule make sure that our content dont strcth to much along the page (mobile first)*/
+}
+
+/*Desktop use */
+
+@media only screen and (min-width: 768px) {
+  /* this will only be applied on desktops with width of 768px*/
+  main {
+    display: flex; /*will make the main picture be located on the right of the logo*/
+  }
+
+  aside {
+    margin-left: 2%;
+  }
+}
+
+/*PAGE STYLES */
+
+h1 {
+  font-size: 3em;
+  margin-top: 0.5em;
+}
+
+.banner {
+  max-width: 100; /*thie will make the image adpt acording to the device used - mobile or desktop fixing the image bellow or beside the logo, thats why is preferryble use em instead of px*/
+}
+
+/*Fixing the Text of the Page*/
+
+.sub-title {
+  background-color: #fff;
+  font-size: 1.5;
+  padding: 10px;
+}
+
+/* Styling Pies menu */
+.columns {
+  display: flex; /*(mobile)it will make that the pies stays beside each othe instead of below (colunms)*/
+}
+
+.columns-desktop {
+  /*(desktop)it will make that the pies stays beside each othe instead of below (colunms)*/
+  display: flex;
+}
+
+.pie {
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #fff;
+  border: solid 1px #ccc;
+}
+
+.pie img {
+  width: 100%;
+}
+
+.pie .title {
+  /* .pie .tile target only the title inside the pie container instead of all titles in the page*/
+  font-weight: bold;
+}
+.pie .columns {
+  width: 100%;
+}
+
+.pie .price {
+  text-align: right;
+}
+
+.pie .columns div {
+  /* this selector goes to pie and columns and catch each div individually to have a width of 50%*/
+  width: 50%;
+}
+
+.pie button {
+  background-color: #f6aeae;
+  padding: 10px;
+  border: solid 1px #f6aeae;
+  border-radius: 3px;
+  color: #fff;
+}

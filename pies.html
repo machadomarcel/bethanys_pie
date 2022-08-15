@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="site.css" type="text/css" />
+    <title>Pies | Bethany's Pie Shop</title>
+  </head>
+  <body>
+    <!--Um shortcut para criar tudo de uma vez incrivel e header>nav>ul>li*3>a depois clicar enter ou tab e vai gerar a tag abaixo-->
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="pies.html">Pies</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <aside><img src="images/logo.png" alt="Bethany's pie shop logo" /></aside>
+      <!--aside serve para quando tenho texto com imagem no meio que nao e algo importante, no nosso caso seria o logo-->
+      <article>
+        <section class="columns-desktop">
+          <div class="pie">
+            <img src="images/apple-pie.png" alt="Apple Pie" />
+            <div class="columns">
+              <div class="title">Apple Pie</div>
+              <div class="price">$12.45</div>
+            </div>
+            <p class="desc">Our famous apple pie</p>
+            <button data-order="apple-pie">Order</button>
+            <!--data order allow the developer to add extra information into the button-->
+          </div>
+          <div class="pie">
+            <img src="images/cherry-pie.png" alt="Chrry Pie" />
+            <div class="columns">
+              <div class="title">Cherry Pie</div>
+              <div class="price">$15.95</div>
+            </div>
+            <p class="desc">A summer classic</p>
+            <button data-order="cherry-pie">Order</button>
+          </div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <!--Novamente eu usei footer>nav>ul>li*3>a para criar a tag abaixo mais facilmente-->
+      <nav>
+        <ul>
+          <li><a href=""></a>Home</li>
+          <li><a href=""></a>Pies</li>
+          <li><a href=""></a>Contact</li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+  <script>
+    // <!--Now all script will run upon this page since we are using DOMContentLoaded-->
+    window.addEventListener("DOMContentLoaded", function (e) {
+      const orderButtons = document.querySelectorAll("button[data-order]");
+
+      orderButtons.forEach(function (button) {
+        //as we looped the button we have acces to the individual button and we can work crating the click and functions we need
+
+        button.addEventListener("click", function (e) {
+          const button = e.currentTarget;
+          const container = button.parentNode;
+
+          const order = {
+            id: button.getAttribute("data-order"),
+            title: container.querySelector(".title").innerText,
+            price: container.querySelector(".price").innerText,
+            desc: container.querySelector(".desc").innerText,
+          };
+          localStorage.setItem("order", JSON.stringify(order)); //transforming data into string since locastorage doesnt accept other elements
+
+          const url = window.location.href.replace("pies.html", "order.html"); //here we are changing the pies html for order html so the browser will get data from the order element insted of the page
+          window.location.href = url;
+        });
+      });
+    });
+  </script>
+</html>
